@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('emails', function (Blueprint $table) {
             $table->id();
             $table->string('email');
+            $table->enum('sent',['yes', 'no'])->default('no');
             $table->timestamps();
         });
     }

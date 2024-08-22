@@ -2,15 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Blog;
+    use App\Models\Blog;
 use App\Models\Page;
+use App\Models\Email;
 use App\Models\Member;
 use App\Models\Slider;
 use App\Models\Project;
 use App\Models\Service;
+use App\Mail\ServiceMail;
 use App\Models\PricingPlan;
 use App\Models\Testimonial;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class FrontController extends Controller
 {
@@ -22,6 +26,16 @@ class FrontController extends Controller
         $pricing = PricingPlan::take(4)->get();
         $members = Member::take(4)->get();
         $testimonials = Testimonial::take(4)->get();
+
+        // mail::to('admin@gmail.com')->send(new ServiceMail());
+        // mail::to('admin@gmail.com')->send(new ServiceMail());
+        // mail::to('rrr@gmail.com')->send(new ServiceMail());
+        // mail::to('admin@gmail.com')->send(new ServiceMail());
+        // mail::to('admin@gmail.com')->send(new ServiceMail());
+        // mail::to('rrr@gmail.com')->send(new ServiceMail());
+        // mail::to('admin@gmail.com')->send(new ServiceMail());
+        // mail::to('admin@gmail.com')->send(new ServiceMail());
+        // mail::to('rrr@gmail.com')->send(new ServiceMail());
 
         return view('website.index', compact('sliders', 'services', 'projects','blogs', 'pricing', 'members','testimonials'));
     }
@@ -68,6 +82,18 @@ class FrontController extends Controller
 
     public function Contact(){
         return view('website.contact');
+    }
+
+    public function sendEmail(Request $request){
+        $request->validate([
+            'email' => 'required|email'
+        ]);
+
+        $email = new Email();
+        $email->email = $request->email;
+        $email->save();
+
+        return redirect()->back();
     }
 
 }

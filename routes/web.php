@@ -25,6 +25,8 @@ Route::get('/Pages', [FrontController::class, 'Pages'])->name('Pages');
 Route::get('/Contact', [FrontController::class, 'Contact'])->name('Contact');
 Route::get('/Pricing', [FrontController::class, 'Pricing'])->name('page.Pricing');
 
+Route::post('/sendEmail', [FrontController::class, 'sendEmail'])->name('sendEmail');
+
 Route::get('/blogs', [FrontController::class, 'blogs'])->name('page.blogs');
 Route::get('/members', [FrontController::class, 'members'])->name('page.members');
 Route::get('/testimonials', [FrontController::class, 'testimonials'])->name('page.testimonials');
